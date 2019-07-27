@@ -47,7 +47,7 @@ Python should have been installed. (Tested version: 3.7 )
   
 2. Run the test_application.py file in command line as follows:
 
-     py test_application.py
+     py test_application.py 
 
      
 The user could also run the test by the following command as well:
