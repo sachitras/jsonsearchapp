@@ -8,11 +8,11 @@ This application will search through JSON files and will output relevant informa
   Following items could be searched:
 
     
-# Users
+* Users
     
-# Tickets
+* Tickets
     
-# Organizations
+* Organizations
 
 
 
