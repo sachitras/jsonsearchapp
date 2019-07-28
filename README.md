@@ -56,3 +56,7 @@ The user could also run the test by the following command as well:
   
 3. The user could change the test_application.py file to validate the tests written.
 
+# Viewing the source files
+
+For better readabilty, use Python editor. Editor used for developement was Atom.
+
