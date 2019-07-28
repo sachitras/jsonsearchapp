@@ -58,5 +58,5 @@ The user could also run the test by the following command as well:
 
 # Viewing the source files
 
-For better readabilty, use Python editor. Editor used for developement was Atom.
+For better readability, use Python editor. Editor used for development was Atom.
 
