@@ -1,4 +1,5 @@
 import sys
+import types
 
 # Exit the program if the user enters 'quit' command
 def checkQuitCommand(command):
@@ -13,7 +14,17 @@ def getVariableValue(variableVal):
         return int(variableVal)
     return variableVal
 
+# Printing out the search results for organizations
+def printOutputOrgs(values):
+    for i in values:
+        for key, value in i.items():
+            if (isinstance(value, list)):
+                printOutput(value)
+            else:
+                print(str(key).ljust(30), value)
+
 # Printing out the search results
 def printOutput(values):
-    for key, value in values.items():
-        print(str(key).ljust(30), value)
+    for i in values:
+        for key, value in i.items():
+                print(str(key).ljust(30), value)

@@ -2,39 +2,42 @@ import util as util
 
 # Search the tickets and displays the output
 def searchTickets(users, tickets, orgs, tktSearchTerm, tktSearchVal):
-    finalTickets = {}
+    finalTickets = []
     for ticket in tickets:
         try:
             if ticket.get(tktSearchTerm) == util.getVariableValue(tktSearchVal):
-
+                newticket = {}
                 if ("_id" in ticket):
-                    finalTickets["_id"] = ticket['_id']
+                    newticket["_id"] = ticket['_id']
                 if ("type" in ticket):
-                    finalTickets["type"] = ticket['type']
+                    newticket["type"] = ticket['type']
                 if ("subject" in ticket):
-                    finalTickets["subject"] = ticket['subject']
+                    newticket["subject"] = ticket['subject']
                 if  ("description" in ticket):
-                    finalTickets["description"] = ticket['description']
+                    newticket["description"] = ticket['description']
                 if ("status" in ticket):
-                    finalTickets["status"] = ticket['status']
+                    newticket["status"] = ticket['status']
                 if ("tags" in ticket):
-                    finalTickets["tags"] = ticket['tags']
+                    newticket["tags"] = ticket['tags']
 
                 for usrAs in users:
                     if("assignee_id" in ticket):
                         if (usrAs["_id"] == ticket["assignee_id"]):
-                            finalTickets["assignee"] = usrAs['name']
+                            newticket["assignee"] = usrAs['name']
                             break
                 for usrSub in users:
                     if("submitter_id" in ticket):
                         if (usrSub["_id"] == ticket["submitter_id"]):
-                            finalTickets["submitter"] = usrSub['name']
+                            newticket["submitter"] = usrSub['name']
                             break
                 for org in orgs:
                     if("organization_id" in ticket):
                         if (ticket["organization_id"] == org["_id"]):
-                            finalTickets["organization"] = org['name']
+                            newticket["organization"] = org['name']
                             break
+                # A line seperation between a list of tickets            
+                newticket[""] = ""
+                finalTickets.append(newticket)
         except:
             print("Searching tickets for", tktSearchTerm, " with a value of", tktSearchVal, " \nNo results found")
 

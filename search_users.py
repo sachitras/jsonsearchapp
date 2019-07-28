@@ -3,60 +3,59 @@ import util as util
 
 # Search the users and displays the output
 def searchUsers(users, tickets, orgs, usrSearchTerm, usrSearchVal):
-    finalUsers = {}
+    finalUsers = []
     for user in users:
         try:
             if user.get(usrSearchTerm) == util.getVariableValue(usrSearchVal):
-                # print(json.dumps(user, indent=2))
+                newUser = {}
                 if ("_id" in user):
-                    finalUsers["_id"] = user['_id']
+                    newUser["_id"] = user['_id']
                 if ("external_id" in user):
-                    finalUsers["external_id"] = user['external_id']
+                    newUser["external_id"] = user['external_id']
                 if ("name" in user):
-                    finalUsers["name"] = user['name']
+                    newUser["name"] = user['name']
                 if ("alias" in user):
-                    finalUsers["alias"] = user['alias']
+                    newUser["alias"] = user['alias']
                 if ("created_at" in user):
-                    finalUsers["created_at"] = user['created_at']
+                    newUser["created_at"] = user['created_at']
                 if ("active" in user):
-                    finalUsers["active"] = user['active']
+                    newUser["active"] = user['active']
                 if ('verified' in user):
-                    finalUsers["verified"] = user['verified']
+                    newUser["verified"] = user['verified']
                 if ("shared" in user):
-                    finalUsers["shared"] = user['shared']
+                    newUser["shared"] = user['shared']
                 if ("locale" in user):
-                    finalUsers["locale"] = user['locale']
+                    newUser["locale"] = user['locale']
                 if ("timezone" in user):
-                    finalUsers["timezone"] = user['timezone']
+                    newUser["timezone"] = user['timezone']
                 if ("last_login_at" in user):
-                    finalUsers["last_login_at"] = user['last_login_at']
+                    newUser["last_login_at"] = user['last_login_at']
                 if ("email" in user):
-                    finalUsers["email"] = user['email']
+                    newUser["email"] = user['email']
                 if ("phone" in user):
-                    finalUsers["phone"] = user['phone']
+                    newUser["phone"] = user['phone']
                 if ("signature" in user):
-                    finalUsers["signature"] = user['signature']
+                    newUser["signature"] = user['signature']
                 if ("organization_id" in user):
-                    finalUsers["organization_id"] = user['organization_id']
+                    newUser["organization_id"] = user['organization_id']
                 if ("tags" in user):
-                    finalUsers["tags"] = user['tags']
+                    newUser["tags"] = user['tags']
                 if ("suspended" in user):
-                    finalUsers["suspended"] = user['suspended']
+                    newUser["suspended"] = user['suspended']
                 if ("role" in user):
-                    finalUsers["role"] = user['role']
+                    newUser["role"] = user['role']
 
                 i = 0
                 for tic in tickets:
                     if (tic["submitter_id"] == user["_id"]):
                         ticketLabel = "ticket_",i
-                        finalUsers[ticketLabel] = tic['subject']
-                        # print("ticket_",i,'             ', tic['subject'])
+                        newUser[ticketLabel] = tic['subject']
                         i = i + 1
                         for org in orgs:
                             if (tic["organization_id"] == org["_id"]):
-                                finalUsers["organization_name"] = org['name']
-                                # print("organization_name", '     ', org['name'])
-                break
+                                newUser["organization_name"] = org['name']
+                                break
+                finalUsers.append(newUser)                
 
         except Exception as e:
             print(e)

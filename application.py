@@ -24,6 +24,7 @@ users = json.load(file_users)
 tickets = json.load(file_tickets)
 orgs = json.load(file_organizations)
 
+# Running the application continuously until the command 'quit' is given
 while True:
     if u.getVariableValue(res1) == 1: # Show the main menu
         m.mainBody(users, tickets, orgs)

@@ -17,12 +17,13 @@ class TestApp(unittest.TestCase):
 
     # Test for a valid scenario (where the given user exsists in the file)
     def test_user_search_1(self):
-        user = u.searchUsers(self.users, self.tickets, self.orgs, "_id", "1")
-        self.assertIsNotNone(user)
+        users = u.searchUsers(self.users, self.tickets, self.orgs, "_id", "1")
+        self.assertIsNotNone(users)
         found = False
-        if ("_id" in user):
+        if (len(users) > 0):
             found = True
         self.assertTrue(found)
+        user = users[0]
         self.assertEqual(user["phone"], "8335-422-718")
         self.assertEqual(user["shared"], False)
         self.assertEqual(user["timezone"], "Sri Lanka")
@@ -32,20 +33,21 @@ class TestApp(unittest.TestCase):
 
     # Test for an invalid scenario (where the given user does not exist in the file)
     def test_user_search_2(self):
-        user = u.searchUsers(self.users, self.tickets, self.orgs, "_id", "344")
+        users = u.searchUsers(self.users, self.tickets, self.orgs, "_id", "344")
         found = False
-        if ("_id" in user):
+        if (len(users) > 0):
             found = True
         self.assertFalse(found)
 
     # Test for a valid ticket.
     def test_ticket_search_1(self):
-        ticket = t.searchTickets(self.users, self.tickets, self.orgs, "external_id", "74e795dd-fb0d-48aa-9c83-f90016ca8243")
-        self.assertIsNotNone(ticket)
+        tickets = t.searchTickets(self.users, self.tickets, self.orgs, "external_id", "74e795dd-fb0d-48aa-9c83-f90016ca8243")
+        self.assertIsNotNone(tickets)
         found = False
-        if ("_id" in ticket):
+        if (len(tickets) > 0):
             found = True
         self.assertTrue(found)
+        ticket = tickets[0]
         self.assertEqual(ticket["type"], "task")
         self.assertEqual(ticket["subject"], "A Drama in Australia")
         self.assertEqual(ticket["status"], "solved")
@@ -53,27 +55,28 @@ class TestApp(unittest.TestCase):
 
     # Test for an invalid ticket.
     def test_ticket_search_2(self):
-        ticket = t.searchTickets(self.users, self.tickets, self.orgs, "external_id", "74e795dd-fb0d-48aa-9c83-f916ca8243")
+        tickets = t.searchTickets(self.users, self.tickets, self.orgs, "external_id", "74e795dd-fb0d-48aa-9c83-f916ca8243")
         found = False
-        if ("_id" in ticket):
+        if (len(tickets) > 0):
             found = True
         self.assertFalse(found)
 
     # Test for a valid organization
     def test_organization_search_1(self):
-        org = o.searchOrganizations(self.users, self.tickets, self.orgs, "_id", "105")
-        self.assertIsNotNone(org)
+        orgs = o.searchOrganizations(self.users, self.tickets, self.orgs, "_id", "105")
+        self.assertIsNotNone(orgs)
         found = False
-        if ("_id" in org):
+        if (len(orgs) > 0):
             found = True
         self.assertTrue(found)
+        org = orgs[0]
         self.assertEqual(org["Organization name"], "Koffee")
 
     # Test for invalid organization
     def test_organization_search_2(self):
-        org = o.searchOrganizations(self.users, self.tickets, self.orgs, "_id", "343")
+        orgs = o.searchOrganizations(self.users, self.tickets, self.orgs, "_id", "343")
         found = False
-        if ("_id" in org):
+        if (len(orgs) > 0):
             found = True
         self.assertFalse(found)
 

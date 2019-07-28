@@ -14,7 +14,7 @@ def mainBody(users, tickets, orgs):
         usrSearchVal = input("Enter search value : ")
         util.checkQuitCommand(usrSearchVal)
         fUsers = u.searchUsers(users, tickets, orgs, usrSearchTerm, usrSearchVal)
-        if ("_id" not in fUsers):
+        if (len(fUsers) < 1):
             print("Searching users for", usrSearchTerm, " with a value of", usrSearchVal, " \nNo results found")
         util.printOutput(fUsers)
 
@@ -24,7 +24,7 @@ def mainBody(users, tickets, orgs):
         tktSearchVal = input("Enter search value : ")
         util.checkQuitCommand(tktSearchVal)
         finalTickets = t.searchTickets(users, tickets, orgs, tktSearchTerm, tktSearchVal)
-        if ("_id" not in finalTickets):
+        if (len(finalTickets) < 1):
             print("Searching tickets for", tktSearchTerm, " with a value of", tktSearchVal, " \nNo results found")
         util.printOutput(finalTickets)
 
@@ -34,9 +34,9 @@ def mainBody(users, tickets, orgs):
         orgSearchVal = input("Enter search value : ")
         util.checkQuitCommand(orgSearchVal)
         finalOrgs = o.searchOrganizations(users, tickets, orgs, orgSearchTerm, orgSearchVal)
-        if ("_id" not in finalOrgs):
+        if (len(finalOrgs) < 1):
             print("Searching organizations for", orgSearchTerm, " with a value of", orgSearchVal, " \nNo results found")
-        util.printOutput(finalOrgs)
+        util.printOutputOrgs(finalOrgs)
 
     else:
         util.checkQuitCommand(res2)
